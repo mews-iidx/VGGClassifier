@@ -43,20 +43,24 @@ if __name__ == '__main__':
         usage()
         quit(-1)
     
+    #section 1
     input_image = sys.argv[1]
     files = []
     files.append(input_image)
 
     endpoint = sys.argv[2]
 
+    #section 2
     imgs = []
     image = cv2.imread(input_image)
     target_size = (224, 224)
     img_resized = cv2.resize(image, target_size)
     imgs.append(img_resized.tolist())
 
+    #section 3
     rets = req2srv(imgs, endpoint)
 
+    #section 4
     for img_file, ret in zip( files, rets):
         print("------ {} prediction results ------ ".format(img_file))
         for _, name, prob in ret:
